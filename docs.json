@@ -35,7 +35,7 @@
         "groups": [
           {
             "group": "Announcements",
-            "pages": ["index", "quickstart", "development"]
+            "pages": ["posts/announcements/intents"]
           },
           {
             "group": "Thoughts",
