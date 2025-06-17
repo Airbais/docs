@@ -11,18 +11,34 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Products",
+        "tab": "Accelerators",
         "groups": [
           {
             "group": "Get Started",
-            "pages": [
-              "index",
-              "quickstart",
-              "development"
-            ]
+            "pages": ["index", "quickstart", "development"]
           },
           {
             "group": "Essentials",
+            "pages": [
+              "essentials/markdown",
+              "essentials/code",
+              "essentials/images",
+              "essentials/settings",
+              "essentials/navigation",
+              "essentials/reusable-snippets"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Posts",
+        "groups": [
+          {
+            "group": "Announcements",
+            "pages": ["index", "quickstart", "development"]
+          },
+          {
+            "group": "Thoughts",
             "pages": [
               "essentials/markdown",
               "essentials/code",
