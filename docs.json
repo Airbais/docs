@@ -3,9 +3,9 @@
   "theme": "mint",
   "name": "Airbais AI Site Accelerators",
   "colors": {
-    "primary": "#f78d1f",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#F78D1F",
+    "light": "#F78D1F",
+    "dark": "#F78D1F"
   },
   "favicon": "/favicon.svg",
   "navigation": {
