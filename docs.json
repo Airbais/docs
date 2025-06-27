@@ -11,7 +11,7 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Intent Tools",
+        "tab": "Welcome",
         "groups": [
           {
             "group": "Get Started",
@@ -59,9 +59,9 @@
           "icon": "book-open-cover"
         },
         {
-          "anchor": "Community",
+          "anchor": "What's New",
           "href": "https://mintlify.com/community",
-          "icon": "slack"
+          "icon": "layer-plus"
         },
         {
           "anchor": "Blog",
