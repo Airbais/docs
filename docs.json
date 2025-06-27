@@ -11,7 +11,7 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Accelerators",
+        "tab": "Intent Tools",
         "groups": [
           {
             "group": "Get Started",
@@ -20,12 +20,12 @@
           {
             "group": "Essentials",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/settings",
-              "essentials/navigation",
-              "essentials/reusable-snippets"
+              "intent-tools/markdown",
+              "intent-tools/code",
+              "intent-tools/images",
+              "intent-tools/settings",
+              "intent-tools/navigation",
+              "intent-tools/reusable-snippets"
             ]
           }
         ]
@@ -38,14 +38,14 @@
             "pages": ["posts/announcements/intents"]
           },
           {
-            "group": "Thoughts",
+            "group": "Ideas",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/settings",
-              "essentials/navigation",
-              "essentials/reusable-snippets"
+              "posts/ideas/markdown",
+              "posts/ideas/code",
+              "posts/ideas/images",
+              "posts/ideas/settings",
+              "posts/ideas/navigation",
+              "posts/ideas/reusable-snippets"
             ]
           }
         ]
