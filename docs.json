@@ -40,12 +40,7 @@
           {
             "group": "Ideas",
             "pages": [
-              "posts/ideas/markdown",
-              "posts/ideas/code",
-              "posts/ideas/images",
-              "posts/ideas/settings",
-              "posts/ideas/navigation",
-              "posts/ideas/reusable-snippets"
+              "posts/ideas/geo-over-seo"
             ]
           }
         ]
