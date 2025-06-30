@@ -1,11 +1,11 @@
 ---
-title: 'Website Intent Analysis Tool'
-description: 'Crawl websites and analyze user intents conveyed to LLMs and AI agents'
+title: 'IntentCrawler - Website Intent Analysis Tool'
+description: 'Professional AI tool that crawls websites and analyzes user intents with modern dashboard'
 ---
 
 ## Overview
 
-A powerful Python tool that crawls websites and analyzes the user intents conveyed to LLMs and AI agents. The tool extracts content, discovers intents dynamically using multiple ML techniques, and provides an interactive dashboard for visualization.
+A professional Python tool that crawls websites and analyzes the user intents conveyed to LLMs and AI agents. Part of the Airbais AI Tools Suite, IntentCrawler extracts content, discovers intents dynamically using multiple ML techniques, and provides modern interactive dashboards with light/dark mode support.
 
 ## Key Features
 
@@ -14,10 +14,10 @@ A powerful Python tool that crawls websites and analyzes the user intents convey
     Respectful crawling with robots.txt compliance, automatic sitemap discovery, and configurable rate limiting
   </Card>
   <Card title="Advanced Intent Discovery" icon="brain">
-    Uses LDA topic modeling, sentence embeddings, and clustering to automatically discover user intents
+    User-focused analysis (default), plus LDA topic modeling, sentence embeddings, and clustering
   </Card>
-  <Card title="Interactive Dashboard" icon="chart-line">
-    Web-based visualization with historical results browsing and detailed analytics
+  <Card title="Modern Dashboard" icon="chart-line">
+    Professional web interface with Airbais design system, light/dark mode, and responsive layout
   </Card>
   <Card title="Structured Exports" icon="file-export">
     Outputs in llmstxt format and JSON for seamless LLM tool integration
@@ -43,7 +43,7 @@ A powerful Python tool that crawls websites and analyzes the user intents convey
   </Step>
   <Step title="Run your first analysis">
     ```bash
-    python main.py https://example.com --dashboard
+    python intentcrawler.py https://example.com --dashboard
     ```
   </Step>
 </Steps>
@@ -54,28 +54,31 @@ A powerful Python tool that crawls websites and analyzes the user intents convey
   <Tab title="Basic Usage">
     ```bash
     # Analyze a website
-    python main.py https://example.com
+    python intentcrawler.py https://example.com
     ```
   </Tab>
   <Tab title="With Dashboard">
     ```bash
     # Analyze and view results in dashboard
-    python main.py https://example.com --dashboard
+    python intentcrawler.py https://example.com --dashboard
     ```
   </Tab>
   <Tab title="View Past Results">
     ```bash
-    # View latest results
-    python main.py --dashboard-only
+    # View latest results (local dashboard)
+    python intentcrawler.py --dashboard-only
 
     # View specific date
-    python main.py --dashboard-date 2024-06-26
+    python intentcrawler.py --dashboard-date 2024-06-26
+
+    # Or use master dashboard (all tools)
+    cd ../dashboard && python run_dashboard.py
     ```
   </Tab>
   <Tab title="List All Results">
     ```bash
     # See all available result dates
-    python main.py --list-results
+    python intentcrawler.py --list-results
     ```
   </Tab>
 </Tabs>
@@ -102,7 +105,8 @@ Customize the tool's behavior through `config.yaml`:
     
     ```yaml
     intents:
-      extraction_method: 'dynamic'     # Enhanced extraction
+      extraction_method: 'user_intent' # Default: user-focused analysis
+      # Alternative: 'dynamic', 'enhanced', 'original'
       use_embeddings: true             # Sentence transformers
       use_lda: true                    # Topic modeling
       lda_topics: 10                   # Number of topics
@@ -227,24 +231,49 @@ Documentation for integrating with Example Company's platform.
 ## Dashboard Features
 
 <Info>
-  The interactive dashboard provides real-time visualization of your intent analysis results
+  Two dashboard options: Local tool-specific dashboard and Master multi-tool dashboard
 </Info>
 
+### Modern Design System
+<CardGroup cols={2}>
+  <Card title="Airbais Design" icon="palette">
+    Professional orange/gray color scheme with Inter font family
+  </Card>
+  <Card title="Light/Dark Mode" icon="moon">
+    Toggle themes with persistent user preferences
+  </Card>
+  <Card title="Responsive Layout" icon="mobile">
+    Works perfectly on desktop and mobile devices
+  </Card>
+  <Card title="Fast Performance" icon="bolt">
+    Optimized loading and smooth interactions
+  </Card>
+</CardGroup>
+
 <Tabs>
-  <Tab title="Overview">
-    - **Intent Distribution**: Pie chart showing all discovered intents
-    - **Confidence Scores**: Visual indicators of intent confidence
-    - **Page Coverage**: How many pages align with each intent
+  <Tab title="Overview Stats">
+    - **Total Pages**: Number of pages analyzed
+    - **Discovered Intents**: Count of unique user intents
+    - **Site Sections**: Structural breakdown of the website
+    - **Confidence Indicators**: Visual quality scores
   </Tab>
-  <Tab title="Deep Dive">
-    - **Section Analysis**: Intent breakdown by site section
-    - **Intent Details**: Drill down into specific intents
-    - **Representative Content**: View example pages for each intent
+  <Tab title="Interactive Charts">
+    - **Intent Distribution**: Bar charts with confidence coloring
+    - **Section Analysis**: Pie charts for each site section
+    - **Site Structure**: Intent mapping across site hierarchy
+    - **Drill-down Tables**: Detailed keyword and page breakdowns
   </Tab>
-  <Tab title="Export Options">
-    - **JSON Export**: Structured data for programmatic use
-    - **Markdown Reports**: Human-readable summaries
+  <Tab title="Dashboard Options">
+    - **Local Dashboard**: `python intentcrawler.py --dashboard-only`
+    - **Master Dashboard**: `cd ../dashboard && python run_dashboard.py`
+    - **Tool Selection**: Choose from multiple AI tools
+    - **Date Selection**: Browse historical results
+  </Tab>
+  <Tab title="Export Features">
+    - **JSON Export**: Machine-readable structured data
+    - **Summary Reports**: Human-readable analysis
     - **llmstxt Format**: Ready for LLM consumption
+    - **Master Integration**: Compatible with AI Tools Suite
   </Tab>
 </Tabs>
 
@@ -328,6 +357,33 @@ Documentation for integrating with Example Company's platform.
   - Optional: GPU for faster embeddings processing
 </Card>
 
+## AI Tools Suite Integration
+
+<Info>
+  IntentCrawler is part of the larger Airbais AI Tools Suite with centralized dashboard
+</Info>
+
+<CardGroup cols={2}>
+  <Card title="Master Dashboard" icon="dashboard">
+    Centralized view of all AI tool results at `../dashboard/`
+  </Card>
+  <Card title="Auto-Discovery" icon="magnifying-glass">
+    New tools are automatically detected and integrated
+  </Card>
+  <Card title="Standard Format" icon="file-code">
+    JSON output compatible with other suite tools
+  </Card>
+  <Card title="Consistent Design" icon="palette">
+    Shared Airbais design system across all tools
+  </Card>
+</CardGroup>
+
+### Master Dashboard Benefits
+- **Multi-Tool View**: See results from all AI tools in one interface
+- **Tool Selection**: Dropdown to choose between different analysis tools
+- **Date Selection**: Browse historical results across all tools
+- **Future-Ready**: Architecture designed for easy tool addition
+
 ## Future Roadmap
 
 <Steps>
@@ -335,16 +391,16 @@ Documentation for integrating with Example Company's platform.
     Expand beyond English content analysis
   </Step>
   <Step title="Real-time Tracking">
-    Monitor intent changes over time
+    Monitor intent changes over time with the master dashboard
   </Step>
   <Step title="A/B Testing">
     Compare intents across different site versions
   </Step>
-  <Step title="Custom Taxonomies">
-    Define your own intent categories
+  <Step title="Suite Expansion">
+    Add sentiment analysis, performance monitoring, and SEO tools
   </Step>
   <Step title="API Access">
-    Programmatic access to analysis results
+    Programmatic access to all suite tools through unified API
   </Step>
 </Steps>
 
