@@ -34,31 +34,55 @@ A comprehensive tool to evaluate how brands are mentioned and represented in Lar
 <Steps>
   <Step title="Install Dependencies">
     Navigate to the llmevaluator directory and install required packages:
-    ```bash cd llmevaluator pip install -r requirements.txt ```
-  </Step>
 
+    ```bash
+    cd llmevaluator
+    pip install -r requirements.txt
+    ```
+  </Step>
   <Step title="Configure Environment">
-    Set up your API keys and environment variables: ```bash cp .env.example .env
-    # Edit .env with your API keys ```
+    Set up your API keys and environment variables:
+
+    ```bash
+    cp .env.example .env
+    # Edit .env with your API keys
+    ```
+
     <Info>
       You'll need API keys for OpenAI and/or Anthropic depending on which LLMs
       you want to evaluate.
     </Info>
   </Step>
-
   <Step title="Create Configuration">
     Create a markdown configuration file with your brand information and
-    evaluation prompts: ```markdown # Brand Configuration ## Brand Information -
-    **Name**: YourBrand - **Website**: https://yourbrand.com - **Aliases**:
-    ["Your Brand", "YB"] - **Competitors**: ["Competitor A", "Competitor B"] ##
-    LLMs - name: gpt4 provider: openai model: gpt-4 temperature: 0.7 max_tokens:
-    300 - name: claude provider: anthropic model: claude-3-sonnet-20240229
-    temperature: 0.5 max_tokens: 300 ```
-  </Step>
+    evaluation prompts:
 
+    ```markdown
+    # Brand Configuration
+    ## Brand Information
+    - **Name**: YourBrand
+    - **Website**: https://yourbrand.com
+    - **Aliases**: ["Your Brand", "YB"]
+    - **Competitors**: ["Competitor A", "Competitor B"]
+    ## LLMs
+    - name: gpt4
+      provider: openai
+      model: gpt-4
+      temperature: 0.7
+      max_tokens: 300
+    - name: claude
+      provider: anthropic
+      model: claude-3-sonnet-20240229
+      temperature: 0.5
+      max_tokens: 300
+    ```
+  </Step>
   <Step title="Run Evaluation">
-    Execute the evaluation with dashboard integration: ```bash python
-    llmevaluator.py config.md --dashboard ```
+    Execute the evaluation with dashboard integration:
+
+    ```bash
+    python llmevaluator.py config.md --dashboard
+    ```
   </Step>
 </Steps>
 
@@ -67,50 +91,91 @@ A comprehensive tool to evaluate how brands are mentioned and represented in Lar
 <AccordionGroup>
   <Accordion title="Brand Information Setup">
     Configure your brand details for accurate detection and analysis:
-    ```markdown ## Brand Information - **Name**: FastMCP - **Website**:
-    https://gofastmcp.com - **Aliases**: ["Fast MCP", "FastMCP Protocol"] -
-    **Competitors**: ["SlowMCP", "StandardMCP"] ``` - **Name**: Primary brand
-    name to track - **Website**: Official website URL for reference tracking -
-    **Aliases**: Alternative names or spellings of your brand - **Competitors**:
-    Competitor brands to track for comparison
-  </Accordion>
 
+    ```markdown
+    ## Brand Information
+    - **Name**: FastMCP
+    - **Website**: https://gofastmcp.com
+    - **Aliases**: ["Fast MCP", "FastMCP Protocol"]
+    - **Competitors**: ["SlowMCP", "StandardMCP"]
+    ```
+
+    - **Name**: Primary brand name to track
+    - **Website**: Official website URL for reference tracking
+    - **Aliases**: Alternative names or spellings of your brand
+    - **Competitors**: Competitor brands to track for comparison
+  </Accordion>
   <Accordion title="Multi-LLM Configuration">
-    Configure multiple LLMs for comparative analysis: ```markdown ## LLMs -
-    name: gpt4 provider: openai model: gpt-4 temperature: 0.7 max_tokens: 300 -
-    name: claude provider: anthropic model: claude-3-sonnet-20240229
-    temperature: 0.5 max_tokens: 300 - name: gpt35 provider: openai model:
-    gpt-3.5-turbo temperature: 0.7 max_tokens: 300 ``` Each LLM configuration
-    includes: - **name**: Unique identifier for the LLM - **provider**: openai
-    or anthropic - **model**: Specific model name - **temperature**: Response
-    randomness (0-1) - **max_tokens**: Maximum response length
-  </Accordion>
+    Configure multiple LLMs for comparative analysis:
 
+    ```markdown
+    ## LLMs
+    - name: gpt4
+      provider: openai
+      model: gpt-4
+      temperature: 0.7
+      max_tokens: 300
+    - name: claude
+      provider: anthropic
+      model: claude-3-sonnet-20240229
+      temperature: 0.5
+      max_tokens: 300
+    - name: gpt35
+      provider: openai
+      model: gpt-3.5-turbo
+      temperature: 0.7
+      max_tokens: 300
+    ```
+
+    Each LLM configuration includes:
+
+    - **name**: Unique identifier for the LLM
+    - **provider**: openai or anthropic
+    - **model**: Specific model name
+    - **temperature**: Response randomness (0-1)
+    - **max_tokens**: Maximum response length
+  </Accordion>
   <Accordion title="Evaluation Prompts">
-    Design prompts that naturally elicit brand mentions: ```markdown ##
-    Evaluation Prompts ### Category: Getting Started 1. How would I create a
-    [domain] server? 2. What is the fastest way to create an [domain] server? 3.
-    What are some frameworks I can use to create [domain] servers and clients?
-    ### Category: Development 1. How would I create an [domain] client? 2. What
-    clients support integration of my [domain] tools? 3. How do I integrate
-    [domain] tools with existing applications? ### Category: Best Practices 1.
-    How should I manage security in my [domain] tool? 2. What are the best
-    practices for [domain] server development? 3. How do I ensure my [domain]
-    tools are performant and scalable? ```
+    Design prompts that naturally elicit brand mentions:
+
+    ```markdown
+    ## Evaluation Prompts
+    ### Category: Getting Started
+    1. How would I create a [domain] server?
+    2. What is the fastest way to create an [domain] server?
+    3. What are some frameworks I can use to create [domain] servers and clients?
+    
+    ### Category: Development
+    1. How would I create an [domain] client?
+    2. What clients support integration of my [domain] tools?
+    3. How do I integrate [domain] tools with existing applications?
+    
+    ### Category: Best Practices
+    1. How should I manage security in my [domain] tool?
+    2. What are the best practices for [domain] server development?
+    3. How do I ensure my [domain] tools are performant and scalable?
+    ```
+
     <Warning>
       Use `[domain]` placeholders that will naturally lead to mentions of your
       brand or product category.
     </Warning>
   </Accordion>
-
   <Accordion title="Evaluation Settings">
-    Fine-tune evaluation behavior and caching: ```markdown ## Evaluation
-    Settings - **Cache Responses**: true - **Sentiment Analysis Method**: hybrid
-    - **Cache Expire Hours**: 24 - **Batch Size**: 10 ``` - **Cache Responses**:
-    Enable response caching to reduce API costs - **Sentiment Analysis Method**:
-    "hybrid" combines TextBlob and LLM analysis - **Cache Expire Hours**: How
-    long to keep cached responses - **Batch Size**: Number of prompts to process
-    simultaneously
+    Fine-tune evaluation behavior and caching:
+
+    ```markdown
+    ## Evaluation Settings
+    - **Cache Responses**: true
+    - **Sentiment Analysis Method**: hybrid
+    - **Cache Expire Hours**: 24
+    - **Batch Size**: 10
+    ```
+
+    - **Cache Responses**: Enable response caching to reduce API costs
+    - **Sentiment Analysis Method**: "hybrid" combines TextBlob and LLM analysis
+    - **Cache Expire Hours**: How long to keep cached responses
+    - **Batch Size**: Number of prompts to process simultaneously
   </Accordion>
 </AccordionGroup>
 
@@ -121,32 +186,26 @@ A comprehensive tool to evaluate how brands are mentioned and represented in Lar
     The tool parses your markdown configuration file to extract brand
     information, LLM settings, and evaluation prompts.
   </Step>
-
   <Step title="Multi-LLM Prompt Execution">
     Each prompt is sent to all configured LLMs simultaneously, with responses
     cached to optimize API usage and costs.
   </Step>
-
   <Step title="Brand Mention Detection">
     Responses are analyzed to detect mentions of your brand, aliases, and
     competitors using pattern matching and context analysis.
   </Step>
-
   <Step title="Sentiment Analysis">
     Each mention is analyzed for sentiment using a hybrid approach combining
     TextBlob and LLM-based sentiment analysis for accuracy.
   </Step>
-
   <Step title="Context Classification">
     Mentions are classified by context (recommendation, comparison, example,
     explanation) and position within the response.
   </Step>
-
   <Step title="Comparative Metrics">
     When multiple LLMs are used, additional metrics are calculated including
     consensus scores and sentiment alignment between LLMs.
   </Step>
-
   <Step title="Report Generation">
     Comprehensive reports are generated with per-LLM metrics, comparative
     analysis, and dashboard-compatible data structures.
@@ -169,7 +228,7 @@ results/
 <Tabs>
   <Tab title="Dashboard Data">
     The `dashboard-data.json` file contains structured data optimized for the master dashboard:
-    
+
     ```json
     {
       "metadata": {
@@ -206,10 +265,9 @@ results/
     }
     ```
   </Tab>
-  
   <Tab title="Metrics Summary">
     Aggregate metrics across all LLMs:
-    
+
     ```json
     {
       "aggregate_metrics": {
@@ -226,10 +284,9 @@ results/
     }
     ```
   </Tab>
-  
   <Tab title="Detailed Results">
     Complete evaluation data with individual prompt responses:
-    
+
     ```json
     {
       "detailed_results": [
@@ -322,15 +379,15 @@ The evaluation results automatically integrate with the master dashboard, provid
 ## Usage Examples
 
 <CodeGroup>
+
 ```bash Basic Evaluation
 # Run evaluation with configuration file
 python llmevaluator.py config.md
 
 # With dashboard launch
-
 python llmevaluator.py config.md --dashboard
+```
 
-````
 
 ```bash Advanced Options
 # Custom output directory with debug logging
@@ -341,7 +398,8 @@ python llmevaluator.py config.md --clear-cache --no-cache
 
 # Validate configuration only
 python llmevaluator.py config.md --dry-run
-````
+```
+
 
 ```bash Dashboard Management
 # View existing results
@@ -367,7 +425,7 @@ python llmevaluator.py --list-results
 
 ### Sentiment Analysis
 
-- **Score Range**: -1.0 (negative) to +1.0 (positive)
+- **Score Range**: -1.0 (negative) to \+1.0 (positive)
 - **Labels**: Positive, Negative, Neutral, or Not Mentioned
 - **Method**: Hybrid approach combining TextBlob and LLM-based sentiment analysis for improved accuracy
 
@@ -409,34 +467,52 @@ When evaluating multiple LLMs, additional insights are generated:
 
 <AccordionGroup>
   <Accordion title="API Key Configuration">
-    **Problem**: "No API key found" errors **Solution**: Ensure your `.env` file
-    contains valid API keys: ```env OPENAI_API_KEY=your_openai_key_here
-    ANTHROPIC_API_KEY=your_anthropic_key_here ``` Check that the environment
-    variables are properly loaded by running: ```bash python -c "import os;
-    print('OpenAI:', bool(os.getenv('OPENAI_API_KEY'))); print('Anthropic:',
-    bool(os.getenv('ANTHROPIC_API_KEY')))" ```
-  </Accordion>
+    **Problem**: "No API key found" errors
+    **Solution**: Ensure your `.env` file contains valid API keys:
 
+    ```env
+    OPENAI_API_KEY=your_openai_key_here
+    ANTHROPIC_API_KEY=your_anthropic_key_here
+    ```
+
+    Check that the environment variables are properly loaded by running:
+
+    ```bash
+    python -c "import os; print('OpenAI:', bool(os.getenv('OPENAI_API_KEY'))); print('Anthropic:', bool(os.getenv('ANTHROPIC_API_KEY')))"
+    ```
+  </Accordion>
   <Accordion title="Rate Limiting Issues">
-    **Problem**: API rate limit errors or timeouts **Solution**: The tool
-    implements automatic retries with exponential backoff. For persistent
-    issues: - Reduce batch size in your configuration - Add delays between
-    requests - Check your API tier limits with your provider - Use caching to
-    minimize repeat requests
-  </Accordion>
+    **Problem**: API rate limit errors or timeouts
+    **Solution**: The tool implements automatic retries with exponential backoff. For persistent issues:
 
+    - Reduce batch size in your configuration
+    - Add delays between requests
+    - Check your API tier limits with your provider
+    - Use caching to minimize repeat requests
+  </Accordion>
   <Accordion title="Cache Problems">
-    **Problem**: Stale or incorrect cached results **Solution**: Clear the cache
-    and run fresh evaluation: ```bash python llmevaluator.py config.md
-    --clear-cache ``` You can also manually delete the cache directory: ```bash
-    rm -rf ./cache ```
-  </Accordion>
+    **Problem**: Stale or incorrect cached results
 
+    **Solution**: Clear the cache and run fresh evaluation:
+
+    ```bash
+    python llmevaluator.py config.md --clear-cache
+    ```
+
+    You can also manually delete the cache directory:
+
+    ```bash
+    rm -rf ./cache
+    ```
+  </Accordion>
   <Accordion title="Dashboard Integration">
-    **Problem**: Results not appearing in dashboard **Solution**: Ensure the
-    evaluation completed successfully and check: - Results directory contains
-    `dashboard-data.json` - Master dashboard is running from the correct tools
-    directory - No JSON formatting errors in the results file
+    **Problem**: Results not appearing in dashboard
+
+    **Solution**: Ensure the evaluation completed successfully and check:
+
+    - Results directory contains `dashboard-data.json`
+    - Master dashboard is running from the correct tools directory
+    - No JSON formatting errors in the results file
   </Accordion>
 </AccordionGroup>
 
@@ -513,7 +589,7 @@ settings.sentiment_analysis_method = "llm_only"  # or "textblob_only"
 # Custom sentiment prompts
 settings.sentiment_prompt_template = """
 Analyze the sentiment toward {brand_name} in this text: {response_text}
-Rate from -1 (very negative) to +1 (very positive):
+Rate from -1 (very negative) to +1 (very positive): 
 """
 ```
 
