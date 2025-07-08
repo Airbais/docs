@@ -18,14 +18,11 @@
             "pages": ["index", "quickstart", "development"]
           },
           {
-            "group": "Essentials",
+            "group": "Tools",
             "pages": [
-              "intent-tools/markdown",
-              "intent-tools/code",
-              "intent-tools/images",
-              "intent-tools/settings",
-              "intent-tools/navigation",
-              "intent-tools/reusable-snippets"
+              "intent-tools/intentcrawler",
+              "intent-tools/llmevaluator",
+              "intent-tools/geoevaluator"
             ]
           }
         ]
@@ -39,9 +36,7 @@
           },
           {
             "group": "Ideas",
-            "pages": [
-              "posts/ideas/geo-over-seo"
-            ]
+            "pages": ["posts/ideas/geo-over-seo"]
           }
         ]
       }

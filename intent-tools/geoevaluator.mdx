@@ -1,0 +1,390 @@
+---
+title: GEO Evaluator
+description: Comprehensive tool for analyzing website optimization for Large Language Models
+icon: 'radar'
+---
+
+<Note>
+  The GEO Evaluator helps brand managers analyze and improve how well their websites are optimized for Large Language Models (LLMs) to understand and reference their content.
+</Note>
+
+## Overview
+
+The **GEO Evaluator** (Generative Engine Optimization Evaluator) is a powerful analysis tool that examines websites across 5 key categories to determine how well they're optimized for LLM understanding. It provides actionable insights and recommendations to improve your brand's visibility and accuracy in AI-generated responses.
+
+<CardGroup cols={2}>
+  <Card title="Structural HTML" icon="code" color="#3B82F6">
+    **25% Weight**
+    
+    Analyzes semantic markup, heading hierarchy, and content landmarks
+  </Card>
+  <Card title="Content Organization" icon="align-left" color="#10B981">
+    **30% Weight**
+    
+    Evaluates paragraph structure, scannability, and FAQ formatting
+  </Card>
+  <Card title="Token Efficiency" icon="gauge-high" color="#F59E0B">
+    **20% Weight**
+    
+    Measures content-to-markup ratio and information density
+  </Card>
+  <Card title="LLM Technical" icon="robot" color="#8B5CF6">
+    **15% Weight**
+    
+    Checks llms.txt, structured data, and meta optimization
+  </Card>
+  <Card title="Accessibility" icon="universal-access" color="#EC4899">
+    **10% Weight**
+    
+    Reviews alt text, link context, and language clarity
+  </Card>
+</CardGroup>
+
+## Key Features
+
+<AccordionGroup>
+  <Accordion title="Individual Page Scoring" icon="file-lines">
+    Every page is analyzed individually with category-specific scores, not just site-wide averages. This helps identify exactly which pages need improvement.
+  </Accordion>
+  
+  <Accordion title="Affected Pages Tracking" icon="list-check">
+    Recommendations include specific pages that need attention, with clickable links and relevant metrics (word count, content ratio, etc.).
+  </Accordion>
+  
+  <Accordion title="Auto-Launch Dashboard" icon="rocket">
+    When using the `--dashboard` flag, the master dashboard automatically opens after analysis completes, showing your results immediately.
+  </Accordion>
+  
+  <Accordion title="Industry Benchmarks" icon="chart-line">
+    Compare your scores against industry averages, top quartile, and leader thresholds to understand your competitive position.
+  </Accordion>
+</AccordionGroup>
+
+## Quick Start
+
+<Tabs>
+  <Tab title="Basic Usage">
+    ```bash
+    # Analyze a website with default settings
+    python geoevaluator.py --url https://example.com --name "Your Brand"
+    
+    # Run analysis and open dashboard automatically
+    python geoevaluator.py --url https://example.com --name "Your Brand" --dashboard
+    ```
+  </Tab>
+  
+  <Tab title="Configuration File">
+    ```yaml
+    website:
+      url: "https://your-website.com"
+      name: "Your Brand Name"
+      max_pages: 50
+      crawl_depth: 3
+      
+    analysis:
+      weights:
+        structural_html: 0.25
+        content_organization: 0.30
+        token_efficiency: 0.20
+        llm_technical: 0.15
+        accessibility: 0.10
+    ```
+    
+    ```bash
+    # Run with configuration
+    python geoevaluator.py config.yaml --dashboard
+    ```
+  </Tab>
+  
+  <Tab title="Advanced Options">
+    ```bash
+    # Custom analysis with specific parameters
+    python geoevaluator.py \
+      --url https://example.com \
+      --name "Your Brand" \
+      --max-pages 100 \
+      --crawl-depth 2 \
+      --delay 2.0 \
+      --dashboard \
+      --verbose
+    ```
+  </Tab>
+</Tabs>
+
+## Understanding Your Score
+
+<Steps>
+  <Step title="Overall Score">
+    Your website receives a score from 0-100 with a letter grade:
+    - **90-100**: Excellent (A)
+    - **80-89**: Good (B)
+    - **70-79**: Fair (C)
+    - **60-69**: Poor (D)
+    - **Below 60**: Very Poor (F)
+  </Step>
+  
+  <Step title="Category Breakdown">
+    Each category contributes to your overall score based on its weight. Focus on improving categories with:
+    - Low scores
+    - High weights
+    - Many affected pages
+  </Step>
+  
+  <Step title="Recommendations">
+    Prioritized action items show:
+    - What needs fixing
+    - Why it matters
+    - Which pages are affected
+    - Expected impact
+  </Step>
+  
+  <Step title="Page-Level Analysis">
+    Individual page scores help identify:
+    - High-performing pages to use as templates
+    - Problem pages dragging down your average
+    - Patterns in scoring across page types
+  </Step>
+</Steps>
+
+## Dashboard Integration
+
+The GEO Evaluator seamlessly integrates with the master dashboard:
+
+<Frame>
+  <img src="/images/geo-dashboard.png" alt="GEO Evaluator Dashboard View" />
+</Frame>
+
+### Dashboard Features
+
+<CardGroup cols={2}>
+  <Card title="Analysis Summary" icon="chart-pie">
+    Side-by-side view of key metrics and industry benchmarks in a responsive layout
+  </Card>
+  <Card title="Visual Indicators" icon="traffic-light">
+    Color-coded scores and progress bars for quick assessment
+  </Card>
+  <Card title="Recommendations" icon="clipboard-list">
+    Expandable recommendations showing affected pages with direct links
+  </Card>
+  <Card title="Page Scores Table" icon="table">
+    Sortable table of individual page scores across all categories
+  </Card>
+</CardGroup>
+
+## Common Optimization Tips
+
+<Tip>
+  **Quick Wins**: Start with these high-impact, easy-to-implement changes:
+  1. Add an llms.txt file to your website root
+  2. Replace generic `<div>` tags with semantic HTML5 elements
+  3. Ensure every page has a proper H1 heading
+  4. Add descriptive alt text to all images
+</Tip>
+
+### Priority Recommendations
+
+<Warning>
+  **Critical for LLM Optimization**: These issues significantly impact how LLMs understand your content:
+  - Missing llms.txt file
+  - No structured data (Schema.org)
+  - Poor content-to-markup ratio (<30%)
+  - Lack of semantic HTML usage
+</Warning>
+
+### Content Organization Best Practices
+
+<Info>
+  **Optimize for Scannability**:
+  - Keep paragraphs under 150 words
+  - Use bullet points and numbered lists
+  - Include FAQ sections with clear Q&A formatting
+  - Break content with descriptive subheadings
+</Info>
+
+## Configuration Examples
+
+### E-commerce Site Configuration
+
+```yaml
+website:
+  url: "https://shop.example.com"
+  name: "Example Shop"
+  max_pages: 100
+  excluded_paths:
+    - "/cart"
+    - "/checkout"
+    - "/account"
+
+analysis:
+  weights:
+    structural_html: 0.20      # Less critical for product pages
+    content_organization: 0.35  # Very important for products
+    token_efficiency: 0.20      
+    llm_technical: 0.20        # Critical for product schema
+    accessibility: 0.05         
+```
+
+### Content-Heavy Blog Configuration
+
+```yaml
+website:
+  url: "https://blog.example.com"
+  name: "Example Blog"
+  max_pages: 200
+  crawl_depth: 4
+
+analysis:
+  weights:
+    structural_html: 0.25      
+    content_organization: 0.40  # Most important for articles
+    token_efficiency: 0.15      # Less critical for long-form
+    llm_technical: 0.15        
+    accessibility: 0.05         
+```
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="No pages crawled" icon="spider">
+    - Check if robots.txt is blocking the crawler
+    - Verify the website URL is accessible
+    - Review excluded_paths configuration
+    - Try increasing timeout_seconds
+  </Accordion>
+  
+  <Accordion title="Low scores despite good content" icon="chart-line-down">
+    - Check for excessive navigation/sidebar markup
+    - Ensure you're using semantic HTML elements
+    - Implement an llms.txt file
+    - Review your content-to-markup ratio
+  </Accordion>
+  
+  <Accordion title="Dashboard not showing results" icon="desktop">
+    - Ensure you used the `--dashboard` flag
+    - Check that `dashboard-data.json` exists in results folder
+    - Verify the dashboard is scanning the correct directory
+    - Look for errors in dashboard logs
+  </Accordion>
+</AccordionGroup>
+
+## API Reference
+
+### Command Line Options
+
+```bash
+geoevaluator.py [config_file] [options]
+
+Positional arguments:
+  config_file           Configuration file path (YAML format)
+
+Website options:
+  --url URL            Website URL to analyze
+  --name NAME          Website/brand name for analysis
+  --max-pages N        Maximum number of pages to analyze (default: 50)
+  --crawl-depth N      Maximum crawl depth (default: 3)
+
+Output options:
+  --output-dir DIR     Output directory for results (default: ./results)
+  --dashboard          Generate dashboard output and launch dashboard
+  --formats FORMAT     Output formats: json, html, dashboard
+
+Crawling options:
+  --delay SECONDS      Delay between requests (default: 1.0)
+  --timeout SECONDS    Request timeout (default: 30)
+
+Utility options:
+  --verbose, -v        Enable verbose logging
+  --dry-run           Validate configuration without running
+  --version           Show version information
+```
+
+### Output File Structure
+
+```
+results/
+└── YYYY-MM-DD/
+    ├── dashboard-data.json         # Dashboard integration data
+    ├── detailed_scores.json        # Complete analysis results
+    ├── geo_analysis_report.html    # Human-readable HTML report
+    └── crawl_log.json             # Detailed crawl information
+```
+
+## Integration
+
+### CI/CD Pipeline Integration
+
+```bash
+#!/bin/bash
+# ci-geo-check.sh
+
+# Run GEO analysis
+python geoevaluator.py config.yaml --formats json
+
+# Extract score
+SCORE=$(jq '.overall_score.total_score' results/*/dashboard-data.json)
+
+# Fail build if score is too low
+if (( $(echo "$SCORE < 70" | bc -l) )); then
+  echo "❌ GEO score $SCORE is below threshold of 70"
+  exit 1
+fi
+
+echo "✅ GEO score $SCORE meets threshold"
+```
+
+### Python Integration
+
+```python
+import subprocess
+import json
+from pathlib import Path
+
+def analyze_website(url, name):
+    """Run GEO analysis and return results."""
+    cmd = [
+        'python', 'geoevaluator.py',
+        '--url', url,
+        '--name', name,
+        '--formats', 'json'
+    ]
+    
+    subprocess.run(cmd, check=True)
+    
+    # Find latest results
+    results_dir = Path('results')
+    latest_dir = max(results_dir.iterdir(), key=lambda p: p.stat().st_mtime)
+    
+    with open(latest_dir / 'dashboard-data.json') as f:
+        return json.load(f)
+
+# Example usage
+results = analyze_website('https://example.com', 'Example Brand')
+print(f"Score: {results['overall_score']['total_score']}")
+print(f"Grade: {results['overall_score']['grade']}")
+```
+
+## Best Practices
+
+<CardGroup cols={2}>
+  <Card title="Regular Monitoring" icon="calendar-check">
+    Run weekly or monthly analyses to track improvements and catch regressions
+  </Card>
+  <Card title="Focus on High-Impact" icon="bullseye">
+    Address high-priority recommendations first for maximum ROI
+  </Card>
+  <Card title="Test Changes" icon="flask">
+    Re-run analysis after making changes to verify improvements
+  </Card>
+  <Card title="Compare Competitors" icon="users">
+    Analyze competitor sites to understand industry benchmarks
+  </Card>
+</CardGroup>
+
+## Support
+
+<Card title="Need Help?" icon="life-ring" href="/support">
+  - Check the troubleshooting section above
+  - Review the detailed README.md in the tool directory
+  - Submit issues to the project repository
+  - Contact the development team for assistance
+</Card>
