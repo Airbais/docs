@@ -49,17 +49,17 @@
       "anchors": [
         {
           "anchor": "Documentation",
-          "href": "intent-tools",
+          "href": "https://airbais.mintlify.app/intent-tools/",
           "icon": "book-open-cover"
         },
         {
           "anchor": "What's New",
-          "href": "posts/announcements/",
+          "href": "https://airbais.mintlify.app/posts/announcements/",
           "icon": "layer-plus"
         },
         {
           "anchor": "Blog",
-          "href": "posts/ideas/",
+          "href": "https://airbais.mintlify.app/posts/ideas/",
           "icon": "newspaper"
         }
       ]
