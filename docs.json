@@ -9,31 +9,6 @@
   },
   "favicon": "/favicon.svg",
   "navigation": {
-    "anchors": [
-      {
-        "anchor": "Documentation",
-        "icon": "book-open-cover",
-        "pages": [
-          "intent-tools/intentcrawler",
-          "intent-tools/llmevaluator",
-          "intent-tools/geoevaluator"
-        ]
-      },
-      {
-        "anchor": "What's New",
-        "icon": "layer-plus",
-        "pages": [
-          "posts/announcements"
-        ]
-      },
-      {
-        "anchor": "Blog",
-        "icon": "newspaper",
-        "pages": [
-          "posts/ideas"
-        ]
-      }
-    ],
     "tabs": [
       {
         "tab": "Welcome",
@@ -41,6 +16,13 @@
           {
             "group": "Get Started",
             "pages": ["index", "quickstart"]
+          },
+          {
+            "group": "What's New",
+            "icon": "layer-plus",
+            "pages": [
+              "posts/announcements"
+            ]
           },
           {
             "group": "Tools",
