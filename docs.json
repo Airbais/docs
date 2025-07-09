@@ -13,17 +13,25 @@
       {
         "anchor": "Documentation",
         "icon": "book-open-cover",
-        "pages": ["intent-tools"]
+        "pages": [
+          "intent-tools/intentcrawler",
+          "intent-tools/llmevaluator",
+          "intent-tools/geoevaluator"
+        ]
       },
       {
         "anchor": "What's New",
         "icon": "layer-plus",
-        "pages": ["posts/announcements"]
+        "pages": [
+          "posts/announcements"
+        ]
       },
       {
         "anchor": "Blog",
         "icon": "newspaper",
-        "pages": ["posts/ideas"]
+        "pages": [
+          "posts/ideas"
+        ]
       }
     ],
     "tabs": [
