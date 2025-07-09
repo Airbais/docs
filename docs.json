@@ -48,18 +48,18 @@
       "anchors": [
         {
           "anchor": "Documentation",
-          "pages": ["intent-tools/"],
-          "icon": "book-open-cover"
+          "icon": "book-open-cover",
+          "pages": ["intent-tools"]
         },
         {
           "anchor": "What's New",
-          "pages": ["posts/announcements/"],
-          "icon": "layer-plus"
+          "icon": "layer-plus",
+          "pages": ["posts/announcements"]
         },
         {
           "anchor": "Blog",
-          "pages": ["posts/ideas/"],
-          "icon": "newspaper"
+          "icon": "newspaper",
+          "pages": ["posts/ideas"]
         }
       ]
     }
