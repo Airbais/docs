@@ -49,17 +49,17 @@
       "anchors": [
         {
           "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
+          "href": "intent-tools",
           "icon": "book-open-cover"
         },
         {
           "anchor": "What's New",
-          "href": "https://mintlify.com/community",
+          "href": "posts/announcements/",
           "icon": "layer-plus"
         },
         {
           "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
+          "href": "posts/ideas/",
           "icon": "newspaper"
         }
       ]
@@ -73,7 +73,7 @@
     "links": [
       {
         "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "href": "mailto:hi@airbais.com"
       }
     ],
     "primary": {
@@ -84,9 +84,8 @@
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "x": "https://x.com/airbais",
+      "github": "https://github.com/airbais"
     }
   }
 }
