@@ -44,25 +44,23 @@
         ]
       }
     ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "icon": "book-open-cover",
-          "pages": ["intent-tools"]
-        },
-        {
-          "anchor": "What's New",
-          "icon": "layer-plus",
-          "pages": ["posts/announcements"]
-        },
-        {
-          "anchor": "Blog",
-          "icon": "newspaper",
-          "pages": ["posts/ideas"]
-        }
-      ]
-    }
+    "anchors": [
+      {
+        "anchor": "Documentation",
+        "icon": "book-open-cover",
+        "pages": ["intent-tools"]
+      },
+      {
+        "anchor": "What's New",
+        "icon": "layer-plus",
+        "pages": ["posts/announcements"]
+      },
+      {
+        "anchor": "Blog",
+        "icon": "newspaper",
+        "pages": ["posts/ideas"]
+      }
+    ]
   },
   "logo": {
     "light": "/logo/light.png",
