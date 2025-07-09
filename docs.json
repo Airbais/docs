@@ -49,6 +49,11 @@
   "navbar": {
     "links": [
       {
+        "icon": "github",
+        "label": "airbais/intent-tools",
+        "href": "https://github.com/Airbais/intent-tools"
+      },
+      {
         "label": "Support",
         "href": "mailto:hi@airbais.com"
       }
