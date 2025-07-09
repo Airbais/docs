@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Bash(mv:*)"
+      "Bash(mv:*)",
+      "WebFetch(domain:www.jlowin.dev)",
+      "WebFetch(domain:www.philschmid.de)",
+      "WebFetch(domain:airbais.mintlify.app)",
+      "WebFetch(domain:mintlify.com)"
     ],
     "deny": []
   }
