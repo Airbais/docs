@@ -30,18 +30,9 @@
               "intent-tools/llmevaluator",
               "intent-tools/geoevaluator"
             ]
-          }
-        ]
-      },
-      {
-        "tab": "Posts",
-        "groups": [
-          {
-            "group": "Announcements",
-            "pages": ["posts/announcements/intents"]
           },
           {
-            "group": "Ideas",
+            "group": "Blog",
             "pages": [
               "posts/ideas/geo-over-seo",
               "posts/ideas/ai-economic-tasks-study"
