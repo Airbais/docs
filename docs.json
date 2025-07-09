@@ -19,7 +19,6 @@
           },
           {
             "group": "What's New",
-            "icon": "layer-plus",
             "pages": [
               "posts/announcements"
             ]
