@@ -1,0 +1,623 @@
+---
+title: "LLMS.txt Generator"
+description: "Automatically generate LLMS.txt files for any website to help Large Language Models better understand and reference your content"
+icon: "file-lines"
+---
+
+## Overview
+
+LLMS.txt is a proposed standard that is intended to aid in context engineering for website content. The LLMS.txt Generator crawls websites and creates standardized LLMS.txt files following the specification at [llmstxt.org](https://llmstxt.org/).
+
+## Key Features
+
+<CardGroup cols={2}>
+  <Card title="Universal Compatibility" icon="globe">
+    Automatically detects website structure and content categories for any type of site
+  </Card>
+  <Card title="Dynamic Section Detection" icon="radar">
+    Intelligently discovers content sections from URL patterns rather than using hardcoded templates
+  </Card>
+  <Card title="Multiple Output Formats" icon="file-export">
+    Generates .txt, .md, and .json versions with comprehensive metadata
+  </Card>
+  <Card title="Dashboard Integration" icon="chart-mixed">
+    Automatically integrates with the master dashboard for visual analysis and reporting
+  </Card>
+</CardGroup>
+
+## Getting Started
+
+<Steps>
+  <Step title="Clone the repository">
+    ```bash
+    git clone https://github.com/Airbais/airbais-tools.git
+    cd tools/llmstxtgenerator
+    ```
+  </Step>
+  <Step title="Install dependencies">
+    ```bash
+    pip install -r requirements.txt
+    ```
+  </Step>
+  <Step title="Set up API keys (optional)">
+    For AI-enhanced descriptions:
+    ```bash
+    export OPENAI_API_KEY="your-openai-api-key"
+    # OR
+    export ANTHROPIC_API_KEY="your-anthropic-api-key"
+    ```
+  </Step>
+  <Step title="Run your first generation">
+    ```bash
+    python llmstxtgenerator.py https://example.com --dashboard
+    ```
+  </Step>
+</Steps>
+
+### Quick Examples
+
+<Tabs>
+  <Tab title="Basic Usage">
+    ```bash
+    # Generate LLMS.txt for a website
+    python llmstxtgenerator.py https://example.com
+    ```
+  </Tab>
+  <Tab title="With Custom Details">
+    ```bash
+    # Custom name and description
+    python llmstxtgenerator.py https://example.com \
+      --name "My Project" \
+      --description "An awesome project that does amazing things"
+    ```
+  </Tab>
+  <Tab title="Using Configuration">
+    ```bash
+    # Use config.yaml settings
+    python llmstxtgenerator.py
+    
+    # Or specify custom config
+    python llmstxtgenerator.py --config custom_config.yaml
+    ```
+  </Tab>
+  <Tab title="View Results">
+    ```bash
+    # Generate with dashboard
+    python llmstxtgenerator.py https://example.com --dashboard
+    
+    # Or use master dashboard (all tools)
+    cd ../dashboard && python dashboard.py
+    ```
+  </Tab>
+</Tabs>
+
+## Configuration
+
+Customize the tool's behavior through `config.yaml`:
+
+<AccordionGroup>
+  <Accordion title="Website Settings">
+    Configure target website and basic information:
+    
+    ```yaml
+    website:
+      url: "https://example.com"
+      name: null  # Auto-detected if not specified
+      description: null  # Auto-detected or AI-generated
+    ```
+  </Accordion>
+  
+  <Accordion title="Generation Settings">
+    Control crawling behavior and section detection:
+    
+    ```yaml
+    generation:
+      max_pages: 100  # Maximum pages to crawl
+      max_depth: 3  # Maximum crawl depth
+      min_pages_per_section: 2  # Minimum pages to create a section
+      max_links_per_section: 20  # Maximum links per section
+      ignore_segments:  # URL segments to ignore for section detection
+        - "p"
+        - "c"
+        - "s"
+        - "id"
+        - "category"
+        - "page"
+    ```
+  </Accordion>
+  
+  <Accordion title="Content Analysis">
+    Configure AI-powered content analysis:
+    
+    ```yaml
+    analysis:
+      use_ai_descriptions: false  # Generate descriptions with AI
+      ai_model: "gpt-4o-mini"  # AI model to use
+      extract_meta: true  # Extract meta tags
+      extract_headings: true  # Extract page headings
+    ```
+  </Accordion>
+  
+  <Accordion title="Output Options">
+    Control output formats and organization:
+    
+    ```yaml
+    output:
+      directory: "results"
+      keep_past_results: true
+      generate_report: true
+      formats:  # Output formats to generate
+        - "txt"
+        - "markdown"
+        - "json"
+    ```
+  </Accordion>
+</AccordionGroup>
+
+## How It Works
+
+<Steps>
+  <Step title="Website Discovery">
+    Crawls the target website respecting robots.txt and following links systematically
+  </Step>
+  <Step title="Dynamic Section Detection">
+    Analyzes URL patterns to automatically discover content categories and sections
+  </Step>
+  <Step title="Content Extraction">
+    Extracts titles, descriptions, and metadata from each discovered page
+  </Step>
+  <Step title="Intelligent Categorization">
+    Groups pages by detected sections with configurable filtering and limits
+  </Step>
+  <Step title="LLMS.txt Generation">
+    Creates structured output following the official LLMS.txt specification
+  </Step>
+  <Step title="Multi-Format Export">
+    Generates .txt, .md, and .json versions with comprehensive metadata
+  </Step>
+  <Step title="Dashboard Integration">
+    Creates dashboard-compatible data for visual analysis and reporting
+  </Step>
+</Steps>
+
+### Dynamic Section Detection
+
+<Info>
+  Unlike template-based approaches, the tool discovers sections directly from your website's URL structure
+</Info>
+
+<CardGroup cols={3}>
+  <Card title="URL Pattern Analysis" icon="link">
+    Analyzes URL paths to identify natural content groupings and hierarchies
+  </Card>
+  <Card title="Smart Filtering" icon="filter">
+    Ignores common URL segments like IDs, pagination, and utility pages
+  </Card>
+  <Card title="Universal Compatibility" icon="check-circle">
+    Works with any website type: documentation, e-commerce, blogs, or corporate sites
+  </Card>
+</CardGroup>
+
+## Output Structure
+
+Results are organized by date for easy historical tracking:
+
+```
+results/
+└── YYYY-MM-DD/
+    ├── llms.txt              # Standard LLMS.txt file
+    ├── llms.md               # Markdown version with metadata
+    ├── llms.json             # Structured JSON data
+    ├── generation_report.md  # Detailed generation report
+    └── dashboard-data.json   # Dashboard integration data
+```
+
+### Example Output
+
+<CodeGroup>
+```text Standard LLMS.txt
+# J.Crew: Clothes, Shoes & Accessories For Women, Men & Kids
+
+> Shop JCrew.com for the Highest Quality Women's and Men's Clothing and see the entire selection of Children's Clothing, Cashmere Sweaters, Women's Dresses and Shoes, Men's Suits, Jackets, Accessories and more.
+
+## Company
+- [Military & Medical Discount](https://jcrew.com/company/military-medical-first-responder-discount): Discounts for service members
+- [J.Crew Credit Card](https://jcrew.com/company/credit-card): Store credit card information
+- [Mobile App](https://jcrew.com/company/the-jcrew-mobile-app): Download the J.Crew app
+
+## Help
+- [Contact Us](https://jcrew.com/help/contact-us): Customer service and support
+- [Shipping & Handling](https://jcrew.com/help/shipping-handling): Delivery information
+- [Order Status](https://jcrew.com/help/order-status): Track your orders
+
+## Shop
+- [Women's Sale](https://jcrew.com/shop/cashmere-summer-sale/womens): End of season cashmere sale
+- [Men's Sale](https://jcrew.com/shop/cashmere-summer-sale/mens): Men's cashmere sale items
+- [Top Rated](https://jcrew.com/shop/top-rated/mens): Customer favorite products
+```
+
+```markdown Markdown with Metadata
+---
+title: J.Crew: Clothes, Shoes & Accessories For Women, Men & Kids - LLMS.txt
+generated: 2025-07-13T19:30:45.256517
+generator: LLMS.txt Generator by Airbais
+---
+
+# J.Crew: Clothes, Shoes & Accessories For Women, Men & Kids
+
+> Shop JCrew.com for the Highest Quality Women's and Men's Clothing...
+
+## Company
+- [Military & Medical Discount](https://jcrew.com/company/military-medical-first-responder-discount): Discounts for service members
+
+---
+
+*This file was automatically generated to help LLMs understand the structure and content of https://jcrew.com*
+```
+
+```json Structured JSON
+{
+  "metadata": {
+    "site_name": "J.Crew: Clothes, Shoes & Accessories For Women, Men & Kids",
+    "site_url": "https://jcrew.com",
+    "generated": "2025-07-13T19:30:45.256698",
+    "generator": "LLMS.txt Generator by Airbais"
+  },
+  "sections": {
+    "company": [
+      {
+        "url": "https://jcrew.com/company/military-medical-first-responder-discount",
+        "title": "Military & Medical Discount",
+        "description": "Discounts for service members"
+      }
+    ]
+  },
+  "navigation": {
+    "total_pages": 100,
+    "sections_found": ["company", "help", "shop", "sale", "plp"]
+  }
+}
+```
+</CodeGroup>
+
+## Dashboard Features
+
+<Info>
+  Two dashboard options: Local tool-specific dashboard and Master multi-tool dashboard
+</Info>
+
+### Visual Analytics
+
+<CardGroup cols={2}>
+  <Card title="Generation Summary" icon="chart-pie">
+    Success rates, pages crawled, and sections discovered with key metrics
+  </Card>
+  <Card title="Site Structure Analysis" icon="sitemap">
+    Interactive visualization of discovered content categories and sections
+  </Card>
+  <Card title="Content Distribution" icon="chart-bar">
+    Breakdown of pages by section with detailed statistics
+  </Card>
+  <Card title="Configuration Overview" icon="settings">
+    Current settings and parameters used for generation
+  </Card>
+</CardGroup>
+
+<Tabs>
+  <Tab title="Local Dashboard">
+    ```bash
+    # Launch after generation
+    python llmstxtgenerator.py https://example.com --dashboard
+    
+    # View existing results
+    python llmstxtgenerator.py --dashboard-only
+    ```
+    
+    - **Tool-specific**: Shows only LLMS.txt generator results
+    - **Fast Loading**: Optimized for single-tool analysis
+    - **Detailed Metrics**: Complete generation statistics and analysis
+  </Tab>
+  <Tab title="Master Dashboard">
+    ```bash
+    # Launch master dashboard
+    cd ../dashboard && python dashboard.py
+    ```
+    
+    - **Multi-tool View**: See results from all AI tools in one interface
+    - **Tool Selection**: Compare different analysis approaches
+    - **Historical Tracking**: Browse results across time and tools
+    - **Future-ready**: Automatically detects new tools
+  </Tab>
+</Tabs>
+
+## Command Line Reference
+
+<ParamField path="url" type="string">
+  Website URL to generate LLMS.txt for (optional if using config file)
+</ParamField>
+
+<ParamField path="--config" type="string">
+  Configuration file path (default: config.yaml)
+</ParamField>
+
+<ParamField path="--name" type="string">
+  Website/project name (overrides auto-detection)
+</ParamField>
+
+<ParamField path="--description" type="string">
+  Website/project description (overrides auto-detection)
+</ParamField>
+
+<ParamField path="--max-pages" type="number">
+  Maximum number of pages to crawl
+</ParamField>
+
+<ParamField path="--max-depth" type="number">
+  Maximum crawl depth
+</ParamField>
+
+<ParamField path="--no-ai" type="flag">
+  Disable AI-generated descriptions
+</ParamField>
+
+<ParamField path="--output-dir" type="string">
+  Output directory for results
+</ParamField>
+
+<ParamField path="--dashboard" type="flag">
+  Launch dashboard after generation
+</ParamField>
+
+<ParamField path="--dashboard-only" type="flag">
+  Launch dashboard without running generation
+</ParamField>
+
+<ParamField path="--verbose" type="flag">
+  Enable verbose logging
+</ParamField>
+
+<ParamField path="--version" type="flag">
+  Show program version number
+</ParamField>
+
+## Real-World Examples
+
+<Tabs>
+  <Tab title="E-commerce Site">
+    ```bash
+    # J.Crew example - discovers shopping categories
+    python llmstxtgenerator.py https://jcrew.com
+    ```
+    
+    **Result**: Sections like `shop`, `sale`, `help`, `company` automatically detected from URL patterns like `/shop/`, `/sale/`, `/help/`, `/company/`
+    
+    **Success Rate**: 47% with 7 sections discovered from 100 pages
+  </Tab>
+  <Tab title="Documentation Site">
+    ```bash
+    # Technical documentation - discovers doc structure
+    python llmstxtgenerator.py https://docs.example.com
+    ```
+    
+    **Result**: Sections like `docs`, `api`, `guides`, `tutorials` detected from paths like `/docs/`, `/api/`, `/guides/`
+    
+    **Benefits**: Natural organization following the site's existing information architecture
+  </Tab>
+  <Tab title="Corporate Website">
+    ```bash
+    # Company site - discovers business sections
+    python llmstxtgenerator.py https://company.com
+    ```
+    
+    **Result**: Sections like `about`, `products`, `services`, `news`, `contact` based on URL structure
+    
+    **Advantage**: Works without predefined templates or site-specific configuration
+  </Tab>
+</Tabs>
+
+## Performance Guidelines
+
+<Warning>
+  Processing time scales with website size and complexity
+</Warning>
+
+<AccordionGroup>
+  <Accordion title="Small Sites (<50 pages)">
+    - **Processing Time**: 1-3 minutes
+    - **Recommended Settings**: Default configuration works well
+    - **Success Rate**: Typically 60-80%
+  </Accordion>
+  <Accordion title="Medium Sites (50-200 pages)">
+    - **Processing Time**: 3-10 minutes
+    - **Optimization**: Consider increasing `min_pages_per_section` to 3-5
+    - **Success Rate**: Typically 40-60%
+  </Accordion>
+  <Accordion title="Large Sites (200+ pages)">
+    - **Processing Time**: 10+ minutes
+    - **Optimization**: Set `max_pages: 100-200` to limit scope
+    - **Success Rate**: Typically 30-50% (more selective)
+  </Accordion>
+</AccordionGroup>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Low Success Rate">
+    **Symptoms**: Less than 20% success rate or very few sections detected
+    
+    **Solutions**:
+    - Lower `min_pages_per_section` in config
+    - Check if the site has a consistent URL structure
+    - Verify the site allows crawling (check robots.txt)
+    - Try increasing `max_depth` for deeper crawling
+  </Accordion>
+  
+  <Accordion title="No Pages Found">
+    **Symptoms**: "No pages crawled" or empty results
+    
+    **Solutions**:
+    - Verify URL is accessible and correct
+    - Check internet connection
+    - Ensure site doesn't block automated crawlers
+    - Try adjusting `user_agent` in crawling configuration
+  </Accordion>
+  
+  <Accordion title="AI Descriptions Not Working">
+    **Symptoms**: Generic descriptions despite enabling AI
+    
+    **Solutions**:
+    - Verify API key is set: `echo $OPENAI_API_KEY`
+    - Check API key has sufficient credits/quota
+    - Try different AI model in configuration
+    - Use `--no-ai` flag to disable and test basic functionality
+  </Accordion>
+  
+  <Accordion title="Dashboard Not Loading">
+    **Symptoms**: Dashboard shows no data or fails to start
+    
+    **Solutions**:
+    - Ensure generation completed successfully
+    - Check `dashboard-data.json` exists in results directory
+    - Verify no JSON formatting errors in results
+    - Try local dashboard: `python llmstxtgenerator.py --dashboard-only`
+  </Accordion>
+</AccordionGroup>
+
+## Advanced Usage
+
+### Custom URL Patterns
+
+Control which URLs to include or exclude:
+
+```yaml
+generation:
+  include_patterns:
+    - "https://example.com/docs/.*"
+    - "https://example.com/api/.*"
+  exclude_patterns:
+    - ".*\\.(pdf|zip|tar\\.gz)$"
+    - ".*/downloads/.*"
+    - ".*/temp/.*"
+```
+
+### Section Detection Tuning
+
+Fine-tune automatic section detection:
+
+```yaml
+generation:
+  min_pages_per_section: 3  # Require more pages per section
+  ignore_segments:          # Additional segments to ignore
+    - "temp"
+    - "staging"
+    - "preview"
+  max_links_per_section: 15  # Limit section size
+```
+
+### Without AI Enhancement
+
+For faster generation without AI descriptions:
+
+```bash
+python llmstxtgenerator.py https://example.com --no-ai
+```
+
+## Requirements
+
+<Card title="System Requirements" icon="server">
+  - Python 3.8+
+  - 256MB RAM minimum
+  - Internet connection for crawling
+  - Optional: API keys for AI-enhanced descriptions
+</Card>
+
+### Dependencies
+
+Key Python packages (automatically installed):
+
+- `requests` - Web crawling and HTTP requests
+- `beautifulsoup4` - HTML parsing and content extraction  
+- `pyyaml` - Configuration file handling
+- `openai` - AI-powered descriptions (optional)
+- `anthropic` - Alternative AI provider (optional)
+- `plotly` - Dashboard visualization
+- `pandas` - Data processing and analysis
+
+## AI Tools Suite Integration
+
+<Info>
+  LLMS.txt Generator is part of the larger Airbais AI Tools Suite with centralized dashboard
+</Info>
+
+<CardGroup cols={2}>
+  <Card title="Master Dashboard" icon="dashboard">
+    Centralized view of all AI tool results at `../dashboard/`
+  </Card>
+  <Card title="Auto-Discovery" icon="magnifying-glass">
+    New tools are automatically detected and integrated
+  </Card>
+  <Card title="Standard Format" icon="file-code">
+    JSON output compatible with other suite tools
+  </Card>
+  <Card title="Consistent Design" icon="palette">
+    Shared Airbais design system across all tools
+  </Card>
+</CardGroup>
+
+### Suite Benefits
+
+- **Unified Analysis**: Combine LLMS.txt generation with intent analysis and brand evaluation
+- **Historical Tracking**: Compare website changes over time across all tools
+- **Streamlined Workflow**: Single dashboard for all AI-powered website analysis
+- **Future-Ready**: Architecture designed for easy addition of new analysis tools
+
+## Contributing
+
+We welcome contributions in these key areas:
+
+<CardGroup cols={2}>
+  <Card title="Section Detection" icon="radar">
+    Improved algorithms for automatic content categorization
+  </Card>
+  <Card title="Content Extraction" icon="file-text">
+    Better handling of complex website structures and content types
+  </Card>
+  <Card title="Output Formats" icon="file-export">
+    Additional export formats and integration capabilities
+  </Card>
+  <Card title="Performance" icon="rocket">
+    Optimization for large-scale websites and faster processing
+  </Card>
+</CardGroup>
+
+### Development Guidelines
+
+1. **Maintain Universal Compatibility**: Ensure changes work across different website types
+2. **Follow Dynamic Detection**: Enhance the URL pattern-based section discovery
+3. **Preserve Dashboard Integration**: Keep dashboard-data.json format compatible
+4. **Add Comprehensive Testing**: Test with real websites of different types
+5. **Update Documentation**: Keep this MDX file current with new features
+
+## Future Roadmap
+
+<Steps>
+  <Step title="Enhanced AI Integration">
+    Better content summarization and automatic description generation
+  </Step>
+  <Step title="Real-time Updates">
+    Monitor websites for changes and automatically update LLMS.txt files
+  </Step>
+  <Step title="API Integration">
+    Direct integration with popular CMS platforms and website builders
+  </Step>
+  <Step title="Multi-language Support">
+    Generate LLMS.txt files for international websites with language detection
+  </Step>
+  <Step title="Advanced Analytics">
+    Content quality scoring and SEO optimization recommendations
+  </Step>
+</Steps>
+
+---
+
+Part of the **Airbais AI Tools Suite** - Comprehensive tools for AI-powered business intelligence and content optimization.

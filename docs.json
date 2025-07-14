@@ -28,7 +28,8 @@
             "pages": [
               "intent-tools/intentcrawler",
               "intent-tools/llmevaluator",
-              "intent-tools/geoevaluator"
+              "intent-tools/geoevaluator",
+              "intent-tools/llmstxtgenerator"
             ]
           },
           {
@@ -54,7 +55,7 @@
         "href": "https://github.com/Airbais/intent-tools"
       },
       {
-        "label": "Support",
+        "label": "Contact",
         "href": "mailto:hi@airbais.com"
       }
     ]
