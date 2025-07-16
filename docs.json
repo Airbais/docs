@@ -31,9 +31,14 @@
               "intent-tools/geoevaluator",
               "intent-tools/llmstxtgenerator"
             ]
-          },
+          }
+        ]
+      },
+      {
+        "tab": "Blog",
+        "groups": [
           {
-            "group": "Blog",
+            "group": "Posts",
             "pages": [
               "posts/ideas/llm-optimized-web",
               "posts/ideas/geo-over-seo",
