@@ -29,7 +29,8 @@
               "intent-tools/intentcrawler",
               "intent-tools/llmevaluator",
               "intent-tools/geoevaluator",
-              "intent-tools/llmstxtgenerator"
+              "intent-tools/llmstxtgenerator",
+              "intent-tools/agentgenerator"
             ]
           },
           {
