@@ -31,6 +31,12 @@
               "intent-tools/geoevaluator",
               "intent-tools/llmstxtgenerator"
             ]
+          },
+          {
+            "group": "Learn",
+            "pages": [
+              "posts/ground-school"
+            ]
           }
         ]
       },
