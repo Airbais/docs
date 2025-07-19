@@ -1,6 +1,11 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
+  "integrations": {
+    "ga4": {
+        "measurementId": "G-Z4HS755M1L"
+    }
+  },
   "name": "Airbais AI Site Accelerators",
   "colors": {
     "primary": "#F78D1F",
