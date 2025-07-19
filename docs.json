@@ -4,6 +4,9 @@
   "integrations": {
     "ga4": {
         "measurementId": "G-Z4HS755M1L"
+    },
+    "gtm": {
+        "tagId": "required"
     }
   },
   "name": "Airbais AI Site Accelerators",
