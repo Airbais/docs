@@ -9,13 +9,23 @@
         "tagId": "G-Z4HS755M1L"
     }
   },
-  "name": "Airbais AI Site Accelerators",
+  "name": "Airbais AI Tools",
+  "description": "Airbais AI Tools is a collection of tools that help you optimize your website for LLMs.",
   "colors": {
     "primary": "#F78D1F",
     "light": "#F78D1F",
     "dark": "#F78D1F"
   },
   "favicon": "/favicon.svg",
+  "contextual": {
+   "options": [
+     "copy",
+     "view",
+     "chatgpt",
+     "claude",
+     "perplexity"
+   ]
+ },
   "navigation": {
     "tabs": [
       {
@@ -89,5 +99,5 @@
       "x": "https://x.com/AirbaisSocial",
       "github": "https://github.com/Airbais/intent-tools"
     }
-  }
+   }
 }
