@@ -1,0 +1,356 @@
+---
+title: "Airbais Tools Automation API"
+description: "HTTP API server for N8N workflows to interact with Airbais tools asynchronously"
+icon: "gears"
+---
+
+# Overview
+
+This API server provides HTTP endpoints for N8N workflows to interact with Airbais tools asynchronously. It supports job management, status tracking, and result retrieval for long-running analysis tasks.
+
+## Installation
+
+<Steps>
+  <Step title="Navigate to automation directory">
+    ```bash cd automation ```
+  </Step>
+  <Step title="Install dependencies">
+    ```bash pip install -r requirements.txt ```
+  </Step>
+  <Step title="Start the server">```bash python api_server.py ```</Step>
+</Steps>
+
+The server will start on port 8888.
+
+## API Endpoints
+
+### Health Check
+
+<CodeGroup>
+```bash cURL
+curl http://localhost:8888/health
+```
+
+```json Response
+{
+  "status": "healthy",
+  "timestamp": "2024-01-01T10:00:00",
+  "tools": ["intentcrawler", "graspevaluator", "geoevaluator", "llmevaluator"],
+  "active_jobs": 2
+}
+```
+
+</CodeGroup>
+
+### Tool Analysis Endpoints
+
+<Tabs>
+  <Tab title="Intent Crawler">
+    **Start Analysis**
+    ```bash
+    POST http://localhost:8888/intentcrawler/analyze
+    Content-Type: application/json
+
+    {
+      "url": "https://example.com"
+    }
+    ```
+
+    <Callout type="info">
+    IntentCrawler analyzes website content to discover user intents for LLM understanding.
+    </Callout>
+
+  </Tab>
+
+  <Tab title="GRASP Evaluator">
+    **Start Evaluation**
+    ```bash
+    POST http://localhost:8888/graspevaluator/analyze
+    Content-Type: application/json
+
+    {
+      "url": "https://example.com",
+      "verbose": true
+    }
+    ```
+
+    <Callout type="info">
+    GRASP Evaluator assesses content quality across five dimensions: Grounded, Readable, Accurate, Structured, Polished.
+    </Callout>
+
+  </Tab>
+
+  <Tab title="GEO Evaluator">
+    **Start Evaluation**
+    ```bash
+    POST http://localhost:8888/geoevaluator/analyze
+    Content-Type: application/json
+
+    {
+      "url": "https://example.com",
+      "name": "Example Site",
+      "max_pages": 50,
+      "dashboard": true
+    }
+    ```
+
+    <Callout type="info">
+    GEO Evaluator performs Generative Engine Optimization analysis to improve LLM understanding.
+    </Callout>
+
+  </Tab>
+
+  <Tab title="LLM Evaluator">
+    **Start Evaluation**
+    ```bash
+    POST http://localhost:8888/llmevaluator/analyze
+    Content-Type: application/json
+
+    {
+      "config": "example_config.md",
+      "log_level": "INFO",
+      "dry_run": false
+    }
+    ```
+
+    <Callout type="warning">
+    LLM Evaluator requires a configuration file that defines brand information, evaluation prompts, and LLM settings. See the llmevaluator directory for example config files.
+    </Callout>
+
+  </Tab>
+</Tabs>
+
+### Common Endpoints
+
+<Accordion title="Job Status">
+  **Check Status**
+  ```bash
+  GET http://localhost:8888/status/{job_id}
+  ```
+
+**Response**
+
+```json
+{
+  "job_id": "uuid-here",
+  "tool": "intentcrawler",
+  "status": "running|completed|failed",
+  "created_at": "2024-01-01T10:00:00",
+  "updated_at": "2024-01-01T10:01:00",
+  "completed_at": null
+}
+```
+
+</Accordion>
+
+<Accordion title="Job Results">
+  **Get Results**
+  ```bash
+  GET http://localhost:8888/results/{job_id}
+  ```
+
+**Response**
+
+```json
+{
+  "job_id": "uuid-here",
+  "tool": "intentcrawler",
+  "status": "completed",
+  "results": {
+    "output_directory": "/path/to/results/2024-01-01",
+    "files": {
+      "dashboard_data": "/path/to/dashboard-data.json",
+      "intent_report": "/path/to/intent-report.json"
+    },
+    "metrics": {
+      "pages_analyzed": 150,
+      "intents_discovered": 12
+    }
+  }
+}
+```
+
+</Accordion>
+
+## Common Issues
+
+<Accordion title="Trailing Characters in Job IDs">
+  If you're copying job IDs from terminal output, be careful not to include any
+  trailing characters like backticks or quotes. The API will automatically clean
+  common trailing special characters, but it's best to copy only the UUID
+  itself.
+</Accordion>
+
+<Accordion title="Tool Not Found">
+  If you get a "tool not found" error, check that: 1. The tool name is correct
+  in your endpoint URL 2. The API server has been restarted after configuration
+  changes 3. The tool is properly configured in `tools_config.yaml`
+</Accordion>
+
+## Supported Tools
+
+<Cards>
+  <Card title="IntentCrawler" icon="search">
+    Website intent analysis for LLMs. Discovers user intents and generates
+    structured reports.
+  </Card>
+  <Card title="GRASP Evaluator" icon="chart-line">
+    Content quality assessment across five key dimensions with detailed scoring.
+  </Card>
+  <Card title="GEO Evaluator" icon="globe">
+    Generative Engine Optimization analysis for improved LLM understanding.
+  </Card>
+  <Card title="LLM Evaluator" icon="brain">
+    Brand presence and sentiment evaluation across multiple LLM models.
+  </Card>
+</Cards>
+
+## Testing Tools
+
+Test scripts are provided for each tool:
+
+<CodeGroup>
+```bash IntentCrawler
+python test_api.py https://example.com
+```
+
+```bash GRASP Evaluator
+python test_grasp.py https://example.com
+```
+
+```bash GEO Evaluator
+python test_geo.py https://example.com "Site Name"
+```
+
+```bash LLM Evaluator
+python test_llm.py example_config.md
+```
+
+</CodeGroup>
+
+## Configuration
+
+<Callout type="info">
+  Tool configurations are managed in `tools_config.yaml`. This file contains
+  tool definitions, server settings, and timeouts.
+</Callout>
+
+### Adding New Tools
+
+<Steps>
+  <Step title="Edit Configuration">
+    Update `tools_config.yaml` with your tool definition:
+
+    ```yaml
+    your_tool_name:
+      name: "Your Tool Display Name"
+      module_path: "your_tool_folder"
+      script: "your_tool.py"
+      description: "What your tool does"
+      result_files:
+        - "dashboard-data.json"
+        - "your-report.json"
+      required_params:
+        - "url"
+      optional_params:
+        - "config"
+        - "output"
+      param_style: "flags"  # or "positional" or "config_file"
+    ```
+
+  </Step>
+
+  <Step title="Restart Server">
+    The API server will automatically pick up the new tool configuration on restart.
+  </Step>
+</Steps>
+
+### Parameter Styles
+
+<Tabs>
+  <Tab title="flags">
+    **Default style** - All parameters use `--flag` format
+    ```bash
+    python tool.py --url https://example.com --verbose
+    ```
+    Used by: GRASP Evaluator, GEO Evaluator
+  </Tab>
+
+{" "}
+<Tab title="positional">
+  **Positional arguments** - URL as direct argument ```bash python tool.py
+  https://example.com --config config.yaml ``` Used by: IntentCrawler
+</Tab>
+
+  <Tab title="config_file">
+    **Config file style** - Configuration file as positional argument
+    ```bash
+    python tool.py config.md --log-level INFO
+    ```
+    Used by: LLM Evaluator
+  </Tab>
+</Tabs>
+
+### Server Settings
+
+<Accordion title="Modify Server Configuration">
+  Edit the `server` section in `tools_config.yaml`:
+
+```yaml
+server:
+  port: 8888
+  host: "0.0.0.0"
+  debug: false
+  cors_enabled: true
+```
+
+</Accordion>
+
+## Response Formats
+
+### Start Analysis Response
+
+```json
+{
+  "job_id": "uuid-here",
+  "status": "queued",
+  "message": "Tool analysis started"
+}
+```
+
+### Status Response
+
+```json
+{
+  "job_id": "uuid-here",
+  "tool": "toolname",
+  "status": "running|completed|failed",
+  "created_at": "2024-01-01T10:00:00",
+  "updated_at": "2024-01-01T10:01:00",
+  "completed_at": "2024-01-01T10:05:00"
+}
+```
+
+### Results Response
+
+```json
+{
+  "job_id": "uuid-here",
+  "tool": "toolname",
+  "status": "completed",
+  "results": {
+    "output_directory": "/path/to/results",
+    "files": {
+      "dashboard_data": "/path/to/dashboard-data.json"
+    },
+    "metrics": {
+      "pages_analyzed": 150
+    }
+  }
+}
+```
+
+<Callout type="success">
+  The automation API provides a consistent interface for all Airbais tools,
+  making it easy to integrate with N8N workflows and other automation platforms.
+</Callout>

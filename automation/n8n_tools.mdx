@@ -1,0 +1,54 @@
+---
+title: "N8N Workflows"
+description: "Start with the pre-built workflows or modify them to suit your needs."
+icon: "arrow-progress"
+---
+
+<Card title="Overview" icon="circle-info">
+There are starter workflows for each tool in the workflows folder in the automation project. With some simple changes to match your environment you can run all our tools with N8N and take action on the results.
+</Card>
+
+## N8N Workflow Integration
+These are the basic steps to create a workflow that works with Airbais tools. We highly recommend you start with the sample workflows and modify from there.
+
+<Steps>
+  <Step title="Start Analysis">
+    **HTTP Request Node**
+    - Method: POST
+    - URL: `http://localhost:8888/{tool}/analyze`
+    - Body: Tool-specific parameters
+    - Store response in: `analysis_response`
+  </Step>
+
+  <Step title="Wait">
+    **Wait Node** - 30 seconds
+  </Step>
+
+  <Step title="Check Status">
+    **HTTP Request Node**
+    - Method: GET
+    - URL: `http://localhost:8888/status/{{$node["Start Analysis"].json["job_id"]}}`
+    - Store response in: `status_response`
+  </Step>
+
+  <Step title="Conditional Check">
+    **IF Node**
+    - Condition: `{{$node["Check Status"].json["status"]}} == "completed"`
+  </Step>
+
+  <Step title="Get Results">
+    **HTTP Request Node**
+    - Method: GET  
+    - URL: `http://localhost:8888/results/{{$node["Start Analysis"].json["job_id"]}}`
+    - Store response in: `results_response`
+  </Step>
+
+  <Step title="Process Files">
+    **Read Binary Files Node**
+    - File Path: `{{$node["Get Results"].json["results"]["files"]["dashboard_data"]}}`
+  </Step>
+</Steps>
+
+<Callout type="tip">
+For tools that take longer to process, increase the wait time or implement a polling loop that checks status every 30-60 seconds.
+</Callout>
