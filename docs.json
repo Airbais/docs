@@ -16,6 +16,13 @@
     "light": "#F78D1F",
     "dark": "#F78D1F"
   },
+  "seo": {
+    "indexing": "all",
+    "metatags": {
+      "og:type": "website",
+      "og:site_name": "Airbais AI Optimization Tools"
+    }
+  },
   "favicon": "/favicon.svg",
   "contextual": {
    "options": [
